@@ -4,7 +4,7 @@ import aiohttp_cors
 from uploader import views
 
 
-logger = logging.getLogger('pipwa_uploader.router')
+logger = logging.getLogger('uploader.router')
 
 
 def setup_routes(app):

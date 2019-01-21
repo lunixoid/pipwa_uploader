@@ -10,7 +10,7 @@ logging.basicConfig(
     format='[%(asctime)s] [%(name)s] [%(levelname)s] %(message)s',
     level=logging.DEBUG
 )
-logger = logging.getLogger('pipwa_uploader.main')
+logger = logging.getLogger('uploader.main')
 
 
 def get_cmd_params():

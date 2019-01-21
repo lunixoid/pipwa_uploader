@@ -1,4 +1,4 @@
 import os
 
 
-STORAGE_PATH = os.getenv('STORAGE_PATH', '/opt/pipwa/uploader/storage')
+STORAGE_PATH = os.getenv('STORAGE_PATH', '/srv/pipwa/storage')

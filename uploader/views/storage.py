@@ -8,11 +8,10 @@ from uploader.settings import (
 )
 
 
-logger = logging.getLogger('pipwa_uploader.view')
+logger = logging.getLogger('uploader.view')
 
 
 async def upload_view(request):
-    logger.info('Uploading request')
     try:
         reader = await request.multipart()
 
@@ -30,12 +29,9 @@ async def upload_view(request):
 
         # Store new file in
         storage = FileStorage(storage_path=path.join(STORAGE_PATH, filename))
+        await storage.save(data=request_data)
         logger.info(f'Storing {path.join(STORAGE_PATH, filename)} {len(request_data)}b')
-        if storage.verify(request_data):
-            await storage.save(data=request_data)
-        else:
-            return web.HTTPBadRequest()
     except Exception as e:
         logger.error(f'Uploading was failed with error: {e}')
-        return web.HTTPServerError()
+        return web.HTTPBadRequest()
     return web.Response()
