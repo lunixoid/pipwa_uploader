@@ -7,7 +7,7 @@ ENV LIBRARY_PATH=/lib:/usr/lib \
     PYTHONPATH=/opt/pipwa \
     WORKER_COUNT=3
 
-RUN apk add --no-cache --progress python3 python3-dev build-base \
+RUN apk add --no-cache --progress python3 python3-dev build-base jpeg-dev zlib-dev \
     && rm -rf /var/cache/apk/
 
 RUN pip3 install -U pip gunicorn
