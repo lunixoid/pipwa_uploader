@@ -10,14 +10,13 @@ logger = logging.getLogger('pipwa_uploader.router')
 def setup_routes(app):
     """Setup routes and appropriate CORS headers."""
     resources = {
-        '/uploader/store': {
+        '/upload/store': {
             'POST': views.storage.upload_view
         },
     }
     logger.info('Routes registered:')
 
     cors = aiohttp_cors.setup(app, defaults={
-        # allow to read all resources for all
         '*': aiohttp_cors.ResourceOptions(
             allow_credentials=True,
             expose_headers='*',
