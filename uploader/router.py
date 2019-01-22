@@ -13,6 +13,9 @@ def setup_routes(app):
         '/upload/store': {
             'POST': views.storage.upload_view
         },
+        '/upload/latest': {
+            'GET': views.storage.latest_view
+        }
     }
     logger.info('Routes registered:')
 
