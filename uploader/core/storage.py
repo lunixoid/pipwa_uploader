@@ -1,5 +1,6 @@
 import os
 import aiofiles
+import uuid
 
 
 class StorageInterface:
@@ -10,11 +11,11 @@ class StorageInterface:
 class FileStorage(StorageInterface):
     def __init__(self, storage_path: str):
         super().__init__()
+        if not os.path.isdir(storage_path):
+            os.mkdir(storage_path)
         self._storage_path = storage_path
 
     async def save(self, data):
-        dir_name = os.path.dirname(self._storage_path)
-        if not os.path.isdir(dir_name):
-            os.mkdir(dir_name)
-        async with aiofiles.open(self._storage_path, 'wb') as f:
+        filename = os.path.join(self._storage_path, str(uuid.uuid1()))
+        async with aiofiles.open(filename, 'wb') as f:
             await f.write(data)

@@ -1,6 +1,5 @@
 import logging
 from aiohttp import web
-from os import path
 
 from uploader.core.storage import FileStorage
 from uploader.settings import (
@@ -28,9 +27,9 @@ async def upload_view(request):
             return web.HTTPBadRequest()
 
         # Store new file in
-        storage = FileStorage(storage_path=path.join(STORAGE_PATH, filename))
+        storage = FileStorage(storage_path=STORAGE_PATH)
         await storage.save(data=request_data)
-        logger.info(f'Storing {path.join(STORAGE_PATH, filename)} {len(request_data)}b')
+        logger.info(f'Storing {filename} {len(request_data)}b')
     except Exception as e:
         logger.error(f'Uploading was failed with error: {e}')
         return web.HTTPBadRequest()
